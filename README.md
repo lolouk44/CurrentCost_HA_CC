@@ -51,20 +51,20 @@ To setup a CurrentCost sensor to your installation:
 
 
 ### serial_port:
-description: Local serial port where the sensor is connected and access is granted.
-required: true
-type: string
+**description**: Local serial port where the sensor is connected and access is granted.\s
+**required**: true\s
+**type**: string\s
 ### name:
-description: Friendly name to use for the frontend. Default to "Current Cost".
-required: false
-type: string
+**description**: Friendly name to use for the frontend. Default to "Current Cost".\s
+**required**: false\s
+**type**: string\s
 ### baudrate:
-description: Baudrate of the serial port. 57600 is the value needed for EnviR devices. 
-required: false
-default: 57600 Bps
-type: integer
+**description**: Baudrate of the serial port. 57600 is the value needed for EnviR devices. \s
+**required**: false\s
+**default**: 57600 Bps\s
+**type**: integer\s
 ### devices:
-description: List of appliance numbers paired with a CurrentCost sensor 
-required: false
-default: 0
-type: integer
+**description**: List of appliance numbers paired with a CurrentCost sensor \s
+**required**: false\s
+**default**: 0\s
+**type**: integer\s
