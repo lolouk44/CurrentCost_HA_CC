@@ -1,0 +1,1 @@
+"""The Current Cost component."""

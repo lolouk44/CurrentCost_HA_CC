@@ -1,0 +1,13 @@
+{
+  "domain": "currentcost",
+  "name": "Current Cost",
+  "documentation": "https://www.home-assistant.io/integrations/currentcost",
+  "requirements": [
+    "pyserial-asyncio==0.4",
+    "xmltodict==0.12.0"
+  ],
+  "dependencies": [],
+  "codeowners": [
+    "@lolouk44"
+  ]
+}
