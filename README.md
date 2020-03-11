@@ -21,6 +21,7 @@ To setup a CurrentCost sensor to your installation:
 # Example configuration.yaml entry
   - platform: currentcost
     serial_port: /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0
+    name: Current Cost
     baudrate: 57600
     devices:
       - 0
@@ -52,11 +53,16 @@ To setup a CurrentCost sensor to your installation:
   required: true
   type: string
 ### name:
-  description: Friendly name to use for the frontend. Default to "Serial sensor".
+  description: Friendly name to use for the frontend. Default to "Current Cost".
   required: false
   type: string
 ### baudrate:
   description: Baudrate of the serial port. 57600 is the value needed for EnviR devices. 
   required: false
   default: 57600 Bps
+  type: integer
+### devices:
+  description: List of appliance numbers paired with a CurrentCost sensor 
+  required: false
+  default: 0
   type: integer
