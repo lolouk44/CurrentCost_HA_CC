@@ -14,10 +14,10 @@ Confirmed working devices:
 ## Configuration
 
 To setup a CurrentCost sensor to your installation:
-1) Create a folder called `custom_component` in your config folder (same folder where configuration.yaml is locate, if that folder does not already exist)
+1) Create a folder called `custom_components` in your config folder (same folder where configuration.yaml is locate, if that folder does not already exist)
 2) Create a folder called `currentcost` (no spaces, lowercase)
 3) Copy the files from this repo into the `currentcost` folder
-4) Add the following to your `configuration.yaml` file:
+4) Add the following to your `configuration.yaml` file under the `sensor` header:
 
 ```yaml
 # Example configuration.yaml entry
