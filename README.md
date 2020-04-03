@@ -14,10 +14,10 @@ Confirmed working devices:
 ## Configuration
 
 To setup a CurrentCost sensor to your installation:
-1) Create a folder called `custom_component` in your config folder (same folder where configuration.yaml is locate, if that folder does not already exist)
+1) Create a folder called `custom_components` in your config folder (same folder where configuration.yaml is locate, if that folder does not already exist)
 2) Create a folder called `currentcost` (no spaces, lowercase)
 3) Copy the files from this repo into the `currentcost` folder
-4) Add the following to your `configuration.yaml` file:
+4) Add the following to your `configuration.yaml` file under the `sensor:` header:
 
 ```yaml
 # Example configuration.yaml entry
@@ -35,17 +35,17 @@ To setup a CurrentCost sensor to your installation:
       currentcost_temperature:
         entity_id: sensor.current_cost
         unit_of_measurement: '°C'
-        value_template: '{{ state_attr("sensor.current_cost", "Temperature")[:-3]  }}'
+        value_template: '{{ state_attr("sensor.current_cost", "Temperature")[:-3] | float }}'
         friendly_name: CurrentCost Temperature
       currentcost_power:
         entity_id: sensor.current_cost
         unit_of_measurement: 'W'
-        value_template: '{{ state_attr("sensor.current_cost", "Appliance 0")[:-2]  }}'
+        value_template: '{{ state_attr("sensor.current_cost", "Appliance 0")[:-2] | int }}'
         friendly_name: CurrentCost Power
       dehumidifier_power:
         entity_id: sensor.current_cost
         unit_of_measurement: 'W'
-        value_template: '{{ state_attr("sensor.current_cost", "Appliance 2")[:-2]  }}'
+        value_template: '{{ state_attr("sensor.current_cost", "Appliance 2")[:-2] | int }}'
         friendly_name: Dehumidifier Power
 ```
 
