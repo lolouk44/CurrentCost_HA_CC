@@ -98,6 +98,13 @@ class CurrentCostSensor(Entity):
                 temperature = None
                 pass
             try:
+                imp = int(data['msg']['imp'])
+                ipu = int(data['msg']['ipu'])
+            except:
+                imp = None
+                ipu = None
+                pass
+            try:
                 wattsch1 = int(data['msg']['ch1']['watts'])
             except:
                 wattsch1 = 0
@@ -117,7 +124,11 @@ class CurrentCostSensor(Entity):
                 if total_watts != 0:
                     self._state = total_watts
             if appliance is not None:
-                self._attributes[f"Appliance {appliance}"] = f"{total_watts} W"
+                if imp is not None:
+                    self._attributes[f"Impulses {appliance}"] = imp
+                    self._attributes[f"Impulses/Unit {appliance}"] = ipu
+                else:
+                    self._attributes[f"Appliance {appliance}"] = f"{total_watts} W"
             if temperature is not None:
                 self._attributes["Temperature"] = f"{temperature} ºC"
             self.async_schedule_update_ha_state()
