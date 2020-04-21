@@ -123,6 +123,12 @@ class CurrentCostSensor(Entity):
             if appliance == 0:
                 if total_watts != 0:
                     self._state = total_watts
+                if wattsch1 != 0:
+                    self._attributes[f"Channel 1"] = f"{wattsch1} W"
+                if wattsch2 != 0:
+                    self._attributes[f"Channel 2"] = f"{wattsch2} W"
+                if wattsch3 != 0:
+                    self._attributes[f"Channel 3"] = f"{wattsch3} W"
             if appliance is not None:
                 if imp is not None:
                     self._attributes[f"Impulses {appliance}"] = imp
