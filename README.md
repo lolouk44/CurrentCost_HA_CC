@@ -10,14 +10,25 @@ It is also possible to list additional appliances by listing the appliance numbe
 Confirmed working devices:
 - Currentcost EnviR
 
+## HACS Installation
+
+The easiest way to install this custom component is via [HACS](https://hacs.xyz/)
+1) Follow the [installation instructions](https://hacs.xyz/docs/installation/prerequisites) to install HACS
+2) Click on the HACS icon in the left side bar, click on the elipsis on the right handside and select `Custom Repositories`
+3) enter `https://github.com/lolouk44/CurrentCost_HA_CC` in the URL box, select `Integration` as a category
+
+
+## Manual Installation
+To install the CurrentCost custom component:
+1) Create a folder called `custom_components` in your config folder (same folder where configuration.yaml is locate, if that folder does not already exist)
+2) Create a folder called `currentcost` (no spaces, lowercase)
+3) Copy the files inside the [CurrentCost_HA_CC](https://github.com/lolouk44/CurrentCost_HA_CC/tree/master/custom_components/CurrentCost_HA_CC) folder into the `currentcost` folder
+
 
 ## Configuration
 
 To setup a CurrentCost sensor to your installation:
-1) Create a folder called `custom_components` in your config folder (same folder where configuration.yaml is locate, if that folder does not already exist)
-2) Create a folder called `currentcost` (no spaces, lowercase)
-3) Copy the files from this repo into the `currentcost` folder
-4) Add the following to your `configuration.yaml` file under the `sensor:` header:
+1) Add the following to your `configuration.yaml` file under the `sensor:` header:
 
 ```yaml
 # Example configuration.yaml entry
