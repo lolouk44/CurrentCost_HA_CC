@@ -84,56 +84,59 @@ class CurrentCostSensor(Entity):
 
             try:
                 data = xmltodict.parse(line)
+                # Data can be parsed from line, continuing
+                try:
+                    appliance = int(data['msg']['sensor'])
+                except:
+                    appliance = None
+                    pass
+                try:
+                    temperature = float(data['msg']['tmpr'])
+                except:
+                    temperature = None
+                    pass
+                try:
+                    imp = int(data['msg']['imp'])
+                    ipu = int(data['msg']['ipu'])
+                except:
+                    imp = None
+                    ipu = None
+                    pass
+                try:
+                    wattsch1 = int(data['msg']['ch1']['watts'])
+                except:
+                    wattsch1 = 0
+                    pass
+                try:
+                    wattsch2 = int(data['msg']['ch2']['watts'])
+                except:
+                    wattsch2 = 0
+                    pass
+                try:
+                    wattsch3 = int(data['msg']['ch3']['watts'])
+                except:
+                    wattsch3 = 0
+                    pass
+                total_watts = wattsch1 + wattsch2 + wattsch3
+                if appliance == 0:
+                    self._state = total_watts
+                    self._attributes[f"Channel 1"] = f"{wattsch1} W"
+                    self._attributes[f"Channel 2"] = f"{wattsch2} W"
+                    self._attributes[f"Channel 3"] = f"{wattsch3} W"
+                if appliance is not None:
+                    if imp is not None:
+                        self._attributes[f"Impulses {appliance}"] = imp
+                        self._attributes[f"Impulses/Unit {appliance}"] = ipu
+                    else:
+                        self._attributes[f"Appliance {appliance}"] = f"{total_watts} W"
+                if temperature is not None:
+                    self._attributes["Temperature"] = f"{temperature} ºC"
+                self.async_schedule_update_ha_state()
+
+            # Data can not be parsed from line, raising exception
             except:
-                _LOGGER.error("Error parsing data from serial port: %s", line)
+                _LOGGER.error(f"Error parsing data from serial port. Are all defined appliances connected? (line: {line}")
                 pass
-            try:
-                appliance = int(data['msg']['sensor'])
-            except:
-                appliance = None
-                pass
-            try:
-                temperature = float(data['msg']['tmpr'])
-            except:
-                temperature = None
-                pass
-            try:
-                imp = int(data['msg']['imp'])
-                ipu = int(data['msg']['ipu'])
-            except:
-                imp = None
-                ipu = None
-                pass
-            try:
-                wattsch1 = int(data['msg']['ch1']['watts'])
-            except:
-                wattsch1 = 0
-                pass
-            try:
-                wattsch2 = int(data['msg']['ch2']['watts'])
-            except:
-                wattsch2 = 0
-                pass
-            try:
-                wattsch3 = int(data['msg']['ch3']['watts'])
-            except:
-                wattsch3 = 0
-                pass
-            total_watts = wattsch1 + wattsch2 + wattsch3
-            if appliance == 0:
-                self._state = total_watts
-                self._attributes[f"Channel 1"] = f"{wattsch1} W"
-                self._attributes[f"Channel 2"] = f"{wattsch2} W"
-                self._attributes[f"Channel 3"] = f"{wattsch3} W"
-            if appliance is not None:
-                if imp is not None:
-                    self._attributes[f"Impulses {appliance}"] = imp
-                    self._attributes[f"Impulses/Unit {appliance}"] = ipu
-                else:
-                    self._attributes[f"Appliance {appliance}"] = f"{total_watts} W"
-            if temperature is not None:
-                self._attributes["Temperature"] = f"{temperature} ºC"
-            self.async_schedule_update_ha_state()
 
     async def stop_serial_read(self):
         """Close resources."""
