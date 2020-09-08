@@ -1,4 +1,5 @@
 # CurrentCost Custom Component for Home Assistant
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 
 This repo is a custom component for [Home Assistant](https://www.home-assistant.io/)
 
@@ -8,6 +9,7 @@ The sensor returns the Total Power (usually on Appliance 0) as a state, and the 
 It is also possible to list additional appliances by listing the appliance number that CurrentCost devices are paired with
 
 Confirmed working devices:
+- Currentcost Envi (aka CC128)
 - Currentcost EnviR
 
 ## HACS Installation
