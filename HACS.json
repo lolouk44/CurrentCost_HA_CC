@@ -1,5 +1,6 @@
 {
   "name": "CurrentCost Custom Component",
+  "render_readme": true,
   "domains": ["sensor"],
   "iot_class": "local push"
 }
