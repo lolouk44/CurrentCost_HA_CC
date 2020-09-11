@@ -1,4 +1,5 @@
 ![currentcost logo](logo.png)
+
 [![version](https://img.shields.io/github/v/release/lolouk44/CurrentCost_HA_CC)](https://github.com/lolouk44/CurrentCost_HA_CC/releases)
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 # CurrentCost Custom Component for Home Assistant
