@@ -1,5 +1,5 @@
 {
-  "name": "CurrentCost Custom Component",
+  "name": "Current Cost",
   "render_readme": true,
   "domains": ["sensor"],
   "iot_class": "local push"
