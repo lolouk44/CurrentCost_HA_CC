@@ -1,3 +1,7 @@
+## [0.1.4] - 2020-09-10
+### Changed
+- repo completely overhauled for a PR to make it ready for publishing in HACS
+
 ## [0.1.3] - 2020-09-08
 ### Changed
 - Repo structure changed to be HACS Compliant
