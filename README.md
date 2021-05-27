@@ -70,6 +70,7 @@ To setup a CurrentCost sensor to your installation:
 **description**: Local serial port where the sensor is connected and access is granted.  
 **required**: true  
 **type**: string  
+note: when using HA in a docker environment, make sure you assign a name to the device when mounting it, e.g. `--device=/dev/ttyUSB0:/dev/ttyUSB0` as opposed to just `--device=/dev/ttyUSB0`
 ### name:
 **description**: Friendly name to use for the frontend. Default to "Current Cost".  
 **required**: false  
