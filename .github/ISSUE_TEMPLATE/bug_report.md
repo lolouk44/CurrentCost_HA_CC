@@ -1,5 +1,12 @@
-<<<<<<< HEAD
-=======
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 ---
 name: Bug report
 about: Create a report to help us improve
@@ -49,4 +56,3 @@ logger:
   logs:
     custom_components.currentcost: debug
 ```
->>>>>>> 4045169db92511ffc7f096d530df00e42c31bbe5
