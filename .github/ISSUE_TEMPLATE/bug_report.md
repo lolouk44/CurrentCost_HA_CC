@@ -39,8 +39,6 @@ Add any other context about the problem here.
 
 **Logs**
 Please set the Current Cost Custom Component's logging level to debug and provide relevant logs section from Home-Assistant.
-<details>
-  <summary>How to enable Logs</summary>
 To Enable debug logging level, add this to your configuration.yaml and restart:
 
 ```
@@ -49,4 +47,3 @@ logger:
   logs:
     custom_components.currentcost: debug
 ```
-</details>
