@@ -51,17 +51,17 @@ To setup a CurrentCost sensor to your installation:
       currentcost_temperature:
         entity_id: sensor.current_cost
         unit_of_measurement: '°C'
-        value_template: '{{ state_attr("sensor.current_cost", "Temperature")[:-3] | float }}'
+        value_template: '{{ state_attr("sensor.current_cost", "Temperature") }}'
         friendly_name: CurrentCost Temperature
       currentcost_power:
         entity_id: sensor.current_cost
         unit_of_measurement: 'W'
-        value_template: '{{ state_attr("sensor.current_cost", "Appliance 0")[:-2] | int }}'
+        value_template: '{{ state_attr("sensor.current_cost", "Appliance 0") }}'
         friendly_name: CurrentCost Power
       dehumidifier_power:
         entity_id: sensor.current_cost
         unit_of_measurement: 'W'
-        value_template: '{{ state_attr("sensor.current_cost", "Appliance 2")[:-2] | int }}'
+        value_template: '{{ state_attr("sensor.current_cost", "Appliance 2") }}'
         friendly_name: Dehumidifier Power
 ```
 

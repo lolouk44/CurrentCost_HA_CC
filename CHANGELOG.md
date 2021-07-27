@@ -1,3 +1,7 @@
+## [0.1.6] - 2021-03-30
+### Breaking Change
+- Standardized the way sensor data is reported (removed the unit of measurement) - Please update your templates (see README)
+
 ## [0.1.5] - 2021-03-30
 ### Changed
 - Added version to manifest
