@@ -30,7 +30,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop/Server/Device (please complete the following information):**
  - Device used to run the Custom Component [e.g. Raspberry Pi, NUC]
- - Method of installation [e.g. HACS, direct copy from GitHub]
+ - Method of installation [e.g. via HACS or manual]
  - Version of the Custom Component installed?
  - Model of the Current Cost Device
 
