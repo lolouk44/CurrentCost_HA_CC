@@ -1,4 +1,8 @@
-## [0.1.6] - 2021-03-30
+## [0.1.7] - 2021-07-28
+### Breaking Change
+- Standardized the way sensor data is reported (removed the unit of measurement) - Please update your templates (see README)
+
+## [0.1.6] - 2021-07-27
 ### Breaking Change
 - Standardized the way sensor data is reported (removed the unit of measurement) - Please update your templates (see README)
 

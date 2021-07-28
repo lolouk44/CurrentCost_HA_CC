@@ -1,7 +1,7 @@
 {
   "domain": "currentcost",
   "name": "Current Cost",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "documentation": "https://github.com/lolouk44/CurrentCost_HA_CC",
   "requirements": [
     "pyserial-asyncio==0.4",

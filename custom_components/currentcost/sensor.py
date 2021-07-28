@@ -120,17 +120,17 @@ class CurrentCostSensor(Entity):
                 total_watts = wattsch1 + wattsch2 + wattsch3
                 if appliance == 0:
                     self._state = total_watts
-                    self._attributes[f"Channel 1"] = f"{wattsch1} W"
-                    self._attributes[f"Channel 2"] = f"{wattsch2} W"
-                    self._attributes[f"Channel 3"] = f"{wattsch3} W"
+                    self._attributes[f"Channel 1"] = wattsch1
+                    self._attributes[f"Channel 2"] = wattsch2
+                    self._attributes[f"Channel 3"] = wattsch3
                 if appliance is not None:
                     if imp is not None:
                         self._attributes[f"Impulses {appliance}"] = imp
                         self._attributes[f"Impulses/Unit {appliance}"] = ipu
                     else:
-                        self._attributes[f"Appliance {appliance}"] = f"{total_watts} W"
+                        self._attributes[f"Appliance {appliance}"] = total_watts
                 if temperature is not None:
-                    self._attributes["Temperature"] = f"{temperature} ºC"
+                    self._attributes["Temperature"] = temperature
                 self.async_schedule_update_ha_state()
 
             # Data can not be parsed from line, raising exception
