@@ -1,3 +1,9 @@
+## [0.1.8] - 2021-08-09
+### Added
+- Updated support for [Long Term Statistics](https://www.home-assistant.io/blog/2021/08/04/release-20218/#long-term-statistics)
+### Changed
+- Updated README and INFO to use "modern" Template Sensors and allow support for Long Term Statistics for templated sensors
+
 ## [0.1.7] - 2021-07-28
 ### Breaking Change
 - Standardized the way sensor data is reported (removed the unit of measurement) - Please update your templates (see README)
