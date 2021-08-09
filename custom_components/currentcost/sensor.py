@@ -6,10 +6,9 @@ import xmltodict
 import serial_asyncio
 import voluptuous as vol
 
-from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import CONF_NAME, CONF_DEVICES, EVENT_HOMEASSISTANT_STOP
+from homeassistant.components.sensor import PLATFORM_SCHEMA, SensorEntity, STATE_CLASS_MEASUREMENT
+from homeassistant.const import CONF_NAME, CONF_DEVICES, EVENT_HOMEASSISTANT_STOP, POWER_WATT, DEVICE_CLASS_POWER
 import homeassistant.helpers.config_validation as cv
-from homeassistant.helpers.entity import Entity
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -49,15 +48,16 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     async_add_entities([sensor], True)
 
 
-class CurrentCostSensor(Entity):
+class CurrentCostSensor(SensorEntity):
     """Representation of a Current Cost sensor."""
 
     def __init__(self, name, port, baudrate, devices):
         """Initialize the Current Cost sensor."""
         self._name = name
-        self._unit = "W"
+        self._unit = POWER_WATT
         self._icon = "mdi:flash-circle"
-        self._device_class = "power"
+        self._device_class = DEVICE_CLASS_POWER
+        self._state_class = STATE_CLASS_MEASUREMENT
         self._state = None
         self._port = port
         self._baudrate = baudrate
@@ -177,3 +177,9 @@ class CurrentCostSensor(Entity):
     def device_class(self):
         """Return the device class of the sensor."""
         return self._device_class
+
+    @property
+    def state_class (self):
+        """Return the state class of the sensor."""
+        _LOGGER.error(f"Setting up State Class")
+        return self._state_class
