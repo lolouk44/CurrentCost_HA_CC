@@ -33,10 +33,12 @@ To install the CurrentCost custom component:
 ## Configuration
 
 To setup a CurrentCost sensor to your installation:
-1) Add the following to your `configuration.yaml` file under the `sensor:` header:
+1) Add the following code to your `configuration.yaml` file under the existing `sensor` and `template` headers. (do not copy/paste the `sensor` or `template` headers). 
+If `sensor` or `template` do not already exist, add the code block including the `sensor` or `template` header.
 
 ```yaml
 # Example configuration.yaml entry
+sensor:
   - platform: currentcost
     serial_port: /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0
     name: Current Cost
@@ -46,23 +48,25 @@ To setup a CurrentCost sensor to your installation:
       - 2
       - 9
 
-  - platform: template
-    sensors:
-      currentcost_temperature:
-        entity_id: sensor.current_cost
+template:
+  - sensor:
+      - name: "CurrentCost Temperature"
         unit_of_measurement: '°C'
-        value_template: '{{ state_attr("sensor.current_cost", "Temperature") }}'
-        friendly_name: CurrentCost Temperature
-      currentcost_power:
-        entity_id: sensor.current_cost
+        state: '{{ state_attr("sensor.current_cost", "Temperature") | float -3 }}' # Manual adjustment of -3°C in case the temp sensor is high than real temperature
+        device_class: temperature
+        state_class: measurement
+  - sensor:
+      - name: "CurrentCost Power"
         unit_of_measurement: 'W'
-        value_template: '{{ state_attr("sensor.current_cost", "Appliance 0") }}'
-        friendly_name: CurrentCost Power
-      dehumidifier_power:
-        entity_id: sensor.current_cost
+        state: '{{ state_attr("sensor.current_cost", "Appliance 0") }}'
+        device_class: power
+        state_class: measurement
+  - sensor:
+      - name: "Dehumidifier Power"
         unit_of_measurement: 'W'
-        value_template: '{{ state_attr("sensor.current_cost", "Appliance 2") }}'
-        friendly_name: Dehumidifier Power
+        state: '{{ state_attr("sensor.current_cost", "Appliance 2") }}'
+        device_class: power
+        state_class: measurement
 ```
 
 
