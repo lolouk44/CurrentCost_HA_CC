@@ -1,3 +1,7 @@
+## [0.1.9] - 2021-08-10
+### Changed
+- Removed "Setting up State Class" error message used for testing
+
 ## [0.1.8] - 2021-08-09
 ### Added
 - Updated support for [Long Term Statistics](https://www.home-assistant.io/blog/2021/08/04/release-20218/#long-term-statistics)
