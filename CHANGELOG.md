@@ -1,4 +1,4 @@
-## [0.1.9] - 2021-08-10
+## [0.1.10] - 2021-08-10
 ### Changed
 - Removed "Setting up State Class" error message used for testing
 
