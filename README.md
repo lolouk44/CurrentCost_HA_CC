@@ -47,6 +47,12 @@ sensor:
       - 0
       - 2
       - 9
+  # Add this sensor if you want to see data in the energy tab
+  - platform: integration
+    source: sensor.current_cost
+    name: Total Energy
+    unit_prefix: k
+    round: 2
 
 template:
   - sensor:
