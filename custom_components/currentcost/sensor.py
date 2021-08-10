@@ -181,5 +181,4 @@ class CurrentCostSensor(SensorEntity):
     @property
     def state_class (self):
         """Return the state class of the sensor."""
-        _LOGGER.error(f"Setting up State Class")
         return self._state_class
