@@ -2,6 +2,7 @@
 import json
 import logging
 import xmltodict
+import sys
 
 import serial_asyncio
 import voluptuous as vol
@@ -63,8 +64,11 @@ class CurrentCostSensor(SensorEntity):
         self._baudrate = baudrate
         self._serial_loop_task = None
         self._attributes = {"Temperature": None}
+        self._devices = devices
         for variable in devices:
             self._attributes[f"Appliance {variable}"] = None
+            self._attributes[f"Appliance {variable} Last 24h"] = None
+            self._attributes[f"Appliance {variable} Last 30 days"] = None
 
     async def async_added_to_hass(self):
         """Handle when an entity is about to be added to Home Assistant."""
@@ -85,6 +89,7 @@ class CurrentCostSensor(SensorEntity):
             try:
                 data = xmltodict.parse(line)
                 # Data can be parsed from line, continuing
+                # First read real time data
                 try:
                     appliance = int(data['msg']['sensor'])
                 except:
@@ -131,11 +136,37 @@ class CurrentCostSensor(SensorEntity):
                         self._attributes[f"Appliance {appliance}"] = total_watts
                 if temperature is not None:
                     self._attributes["Temperature"] = temperature
+                    
+                # Then read history data
+
+                for variable in self._devices:
+                    #self._attributes[f"Appliance {variable}"] = None
+                    try:
+                        if int(data['msg']['hist']['data'][int(variable)]['sensor']) == int(variable):
+                            applianceHist = int(data['msg']['hist']['data'][int(variable)]['sensor'])
+                        else:
+                            applianceHist = None
+                    except:
+                        applianceHist = None
+                        pass
+                    if applianceHist is not None:
+                        try:
+                            last24h = float(data['msg']['hist']['data'][applianceHist]['d001'])
+                            self._attributes[f"Appliance {applianceHist} Last 24h"] = last24h
+                        except:
+                            pass
+                        try:
+                            last30d = float(data['msg']['hist']['data'][applianceHist]['m001'])
+                            self._attributes[f"Appliance {applianceHist} Last 30 days"] = last30d
+                        except:
+                            pass
+                    
+                # Then update HA Sensor info
                 self.async_schedule_update_ha_state()
 
             # Data can not be parsed from line, raising exception
             except:
-                _LOGGER.error(f"Error parsing data from serial port. Are all defined appliances connected? (line: {line}")
+                _LOGGER.error(f"Error parsing data from serial port:\n    {sys.exc_info()[1]}\n    line received:\n    {line}")
                 pass
 
     async def stop_serial_read(self):
