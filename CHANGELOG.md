@@ -1,3 +1,7 @@
+## [0.2.0] - 2021-08-11
+### Added
+- Added last 24h and last 30 days energy used in KWh to the attributes
+
 ## [0.1.10] - 2021-08-10
 ### Changed
 - Removed "Setting up State Class" error message used for testing

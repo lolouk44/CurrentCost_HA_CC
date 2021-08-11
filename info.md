@@ -26,7 +26,7 @@ template:
         unit_of_measurement: '°C'
         state: '{{ state_attr("sensor.current_cost", "Temperature") | float -3 }}' # Manual adjustment of -3°C in case the temp sensor is high than real temperature
         device_class: temperature
-        state_class: measurement
+        state_class: measurement # Add state_class: measurement for long term statistics are required
   - sensor:
       - name: "CurrentCost Power"
         unit_of_measurement: 'W'
@@ -39,6 +39,11 @@ template:
         state: '{{ state_attr("sensor.current_cost", "Appliance 2") }}'
         device_class: power
         state_class: measurement
+  - sensor:
+      - name: "Total Energy Used Last 24h" # Note: this data is published by the Current Cost device every 2h
+        unit_of_measurement: 'KWh'
+        state: '{{ state_attr("sensor.current_cost", "Appliance 0 Last 24h") }}'
+        device_class: energy
 ```
 
 {% if installed %}
