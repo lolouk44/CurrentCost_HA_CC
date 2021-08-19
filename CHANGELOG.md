@@ -1,4 +1,4 @@
-## [0.2.0] - 2021-08-19
+## [0.2.1] - 2021-08-19
 ### Added
 - Added handling of temperature in Fahrenheit
 
