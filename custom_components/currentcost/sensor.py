@@ -95,10 +95,15 @@ class CurrentCostSensor(SensorEntity):
                 except:
                     appliance = None
                     pass
+                
+                temperature = None
                 try:
                     temperature = float(data['msg']['tmpr'])
                 except:
-                    temperature = None
+                    pass
+                try:
+                    temperature = float(data['msg']['tmprF'])
+                except:
                     pass
                 try:
                     imp = int(data['msg']['imp'])

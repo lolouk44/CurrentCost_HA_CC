@@ -23,8 +23,8 @@ sensor:
 template:
   - sensor:
       - name: "CurrentCost Temperature"
-        unit_of_measurement: '°C'
-        state: '{{ state_attr("sensor.current_cost", "Temperature") | float -3 }}' # Manual adjustment of -3°C in case the temp sensor is high than real temperature
+        unit_of_measurement: '°C' # or °F for Fahrenheits
+        state: '{{ state_attr("sensor.current_cost", "Temperature") | float -3 }}' # Manual adjustment of -3°C in case the temp sensor is higher than real temperature
         device_class: temperature
         state_class: measurement # Add state_class: measurement for long term statistics are required
   - sensor:

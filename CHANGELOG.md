@@ -1,3 +1,7 @@
+## [0.2.0] - 2021-08-19
+### Added
+- Added handling of temperature in Fahrenheit
+
 ## [0.2.0] - 2021-08-11
 ### Added
 - Added last 24h and last 30 days energy used in KWh to the attributes
