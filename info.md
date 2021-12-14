@@ -1,5 +1,7 @@
 ##Usage:
 
+**Please note: Home Assistant 2021.12 or higher is required for this custom component to work**
+
 Add the following code to your `configuration.yaml` file under the existing `sensor` and `template` headers. (do not copy/paste the `sensor` or `template` headers). 
 If `sensor` or `template` do not already exist, add the code block including the `sensor` or `template` header.
 
