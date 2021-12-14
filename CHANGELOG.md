@@ -1,5 +1,5 @@
 ## [0.2.2] - 2021-12-14
-### Added
+### Changed
 - Updated Sensor definition: replace deprecated device_state_attributes with extra_state_attributes
 
 ## [0.2.1] - 2021-08-19
