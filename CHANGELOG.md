@@ -1,3 +1,7 @@
+## [0.2.3] - 2022-09-18
+### Changed
+- Gracefully handle when unable to read serial port ([fixes #17](https://github.com/lolouk44/CurrentCost_HA_CC/issues/17))
+
 ## [0.2.2] - 2021-12-14
 ### Changed
 - Updated Sensor definition: replace deprecated device_state_attributes with extra_state_attributes

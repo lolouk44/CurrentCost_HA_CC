@@ -82,10 +82,13 @@ class CurrentCostSensor(SensorEntity):
             url=device, baudrate=rate, **kwargs
         )
         while True:
-            line = await reader.readline()
-            line = line.decode("utf-8").strip()
-            _LOGGER.debug("Line Received: %s", line)
-
+            try:
+                line = await reader.readline()
+                line = line.decode("utf-8").strip()
+                _LOGGER.debug("Line Received: %s", line)
+            except Exception as error:
+                _LOGGER.error("Error Reading From Serial Port: %s", error)
+                pass
             try:
                 data = xmltodict.parse(line)
                 # Data can be parsed from line, continuing
