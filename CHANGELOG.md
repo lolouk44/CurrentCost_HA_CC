@@ -1,3 +1,7 @@
+## [0.2.4] - 2022-10-12
+### Changed
+- Now supports `unique_id:` as a configuration option.
+
 ## [0.2.3] - 2022-09-18
 ### Changed
 - Gracefully handle when unable to read serial port ([fixes #17](https://github.com/lolouk44/CurrentCost_HA_CC/issues/17))
