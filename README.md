@@ -44,6 +44,7 @@ sensor:
   - platform: currentcost
     serial_port: /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0
     name: Current Cost
+    unique_id: abaaa250-fd59-46e1-abd8-07545fb2b297
     baudrate: 57600
     devices:
       - 0
