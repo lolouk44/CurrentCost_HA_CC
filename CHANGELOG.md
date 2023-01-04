@@ -1,6 +1,9 @@
-## [0.2.4] - 2022-10-12
+## [0.2.4] - 2023-01-14
+### Added
+- Support for unique_id to help sensor customisation
 ### Changed
-- Now supports `unique_id:` as a configuration option.
+- Replaced deprecated DEVICE_CLASS_* Constants ([fixes #20](https://github.com/lolouk44/CurrentCost_HA_CC/issues/20))
+- Fixed default icon (flash-circle -> lightning-bolt-circle)
 
 ## [0.2.3] - 2022-09-18
 ### Changed
