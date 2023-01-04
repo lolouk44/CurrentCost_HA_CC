@@ -8,7 +8,7 @@ import serial_asyncio
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA, SensorEntity, STATE_CLASS_MEASUREMENT
-from homeassistant.const import CONF_NAME, CONF_DEVICES, EVENT_HOMEASSISTANT_STOP, POWER_WATT, DEVICE_CLASS_POWER
+from homeassistant.const import CONF_NAME, CONF_UNIQUE_ID, CONF_DEVICES, EVENT_HOMEASSISTANT_STOP, POWER_WATT, DEVICE_CLASS_POWER
 import homeassistant.helpers.config_validation as cv
 
 _LOGGER = logging.getLogger(__name__)
@@ -27,6 +27,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Required(CONF_SERIAL_PORT): cv.string,
         vol.Optional(CONF_BAUDRATE, default=DEFAULT_BAUDRATE): cv.positive_int,
         vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
+        vol.Optional(CONF_UNIQUE_ID): cv.string,
         vol.Optional(CONF_DEVICES, default=DEFAULT_DEVICES): vol.All(cv.ensure_list, [vol.Range(min=0, max=9)]),
     }
 )
@@ -35,12 +36,13 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Set up the Current Cost sensor platform."""
     name = config.get(CONF_NAME)
+    unique_id = config.get(CONF_UNIQUE_ID)
     port = config.get(CONF_SERIAL_PORT)
     baudrate = config.get(CONF_BAUDRATE)
     devices = config.get(CONF_DEVICES)
     _LOGGER.debug("devices: %s", config.get(CONF_DEVICES))
     #sensor = []
-    sensor = CurrentCostSensor(name, port, baudrate, devices)
+    sensor = CurrentCostSensor(name, unique_id, port, baudrate, devices)
     #for variable in devices:
     #    sensor.append(CurrentCostSensor(f"{name}_appliance_{variable}", port, baudrate))
     #sensor.append(CurrentCostSensor(f"{name}_temperature", port, baudrate))
@@ -52,9 +54,10 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 class CurrentCostSensor(SensorEntity):
     """Representation of a Current Cost sensor."""
 
-    def __init__(self, name, port, baudrate, devices):
+    def __init__(self, name, unique_id, port, baudrate, devices):
         """Initialize the Current Cost sensor."""
         self._name = name
+        self._attr_unique_id = None if unique_id is None else f"current-cost-{unique_id}"
         self._unit = POWER_WATT
         self._icon = "mdi:flash-circle"
         self._device_class = DEVICE_CLASS_POWER
