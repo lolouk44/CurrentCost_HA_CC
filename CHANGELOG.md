@@ -1,3 +1,7 @@
+## [0.2.5] - 2023-06-30
+### Changed
+- version bump pyserial-asyncio==0.6 to fix for python 3.11 in 2023.6
+
 ## [0.2.4] - 2023-01-14
 ### Added
 - Support for unique_id to help sensor customisation
